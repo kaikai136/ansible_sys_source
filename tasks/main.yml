@@ -1,0 +1,12 @@
+---
+# tasks file for update_source
+- name: Include OS-specific variables.
+  include_vars: "{{ ansible_os_family }}.yml"
+- name: print
+  debug: msg={{Source}}
+
+- include_tasks: replace_source-Debian.yml
+  when: ansible_os_family == 'Debian'
+
+- include_tasks: replace_source-RedHat.yml
+  when: ansible_os_family == 'RedHat'

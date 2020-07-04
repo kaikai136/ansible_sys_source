@@ -1,0 +1,16 @@
+---
+- name: source bak
+  copy:
+    src: yum.repos.d/Centos-7.repo
+    dest: /etc/yum.repos.d/CentOS-Base.repo
+#    dest: /etc/CentOS-Base.repo
+    directory_mode: 644
+#    force: yes
+    backup: yes
+
+- name: update source bacpack
+  yum: update_cache=yes
+
+- name: upgrade all packages
+  yum: name=* state=latest
+
